@@ -1,0 +1,77 @@
+package Ex1;
+import java.util.*;
+
+public class Stack2 {
+    Node head;
+    public void push(int data) {
+        if (head == null)
+            head = new Node(data);
+        else {
+            Node temp = head;
+            head = new Node(data, temp);
+        }
+    }
+    public Node pop() {
+        Node temp = head;
+        head = head.next;
+        return temp;
+    }
+    public Node peek() {
+        return head;
+    }
+    public boolean isEmpty() {
+        return (head == null) ? true : false;
+    }
+    public void clear() {
+        head = null;
+    }
+    public int search(int n) {
+        int index = -1;
+        Node current = head;
+        while(current != null) {
+            index++;
+            if (current.data == n)
+                return index;
+        }
+        return -1;
+    }
+    public Node [] toArray() {
+        Node [] a = new Node[3];
+        Node current = head;
+        int index = 0;
+        while (current != null && index < 3) {
+            a[index] = pop();
+            index++;
+        }
+        return a;
+    }
+    public void pushAll(Stack2 s) {
+        while(s.peek() != null) {
+           this.push(s.head.data);
+            s.pop();
+        }
+    }
+    public ArrayList<Node> popAll() {
+        ArrayList<Node> list = new ArrayList<>();
+        while(peek() != null) 
+            list.add(pop());
+        Collections.reverse(list);
+        return list;
+    }
+    public Stack2 reverse() {
+        Stack2 s = new Stack2();
+        
+        while(this.peek() != null) {
+             s.push(this.peek().data);
+            this.pop();
+        }
+           
+
+        return s;
+    }
+    public void printStack() {
+        while (peek() != null)
+            System.out.print(pop().data + " ");
+        System.out.println();
+    }
+}
