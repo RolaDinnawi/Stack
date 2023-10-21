@@ -1,0 +1,36 @@
+package Ex1;
+
+import java.util.Arrays;
+
+public class Driver {
+    public static void main(String [] args) {
+        Stack2 s = new Stack2();
+        if (s.isEmpty())
+            System.out.println("Stack is empty");
+        s.push(30);
+        if (!s.isEmpty())
+            System.out.println("Stack is not empty");
+
+        s.push(40);
+        s.push(50);
+        s.push(60);
+        s.push(70);
+        s.push(90);
+        s.printStack();
+        Node [] a = s.toArray();
+        System.out.println(Arrays.toString(a));
+
+        Stack2 n = new Stack2();
+        n.push(0);
+        n.push(1);
+        n.push(2);
+        s.pushAll(n);
+        s.printStack();
+
+        Stack2 rev = s.reverse();
+        rev.printStack();
+
+
+
+    }
+}
